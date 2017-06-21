@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'maven'
+    id 'org.springframework.boot' version '1.5.4.RELEASE'
+}
+
+def projectVersion = file(VERSION_FILE_PATH).text
+group PROJECT_GROUP_NAME
+version projectVersion
+sourceCompatibility = 1.8
+mainClassName = MAIN_CLASS_NAME
+
+def logbackVersion = "1.1.8"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    compile 'io.github.avivcarmis:trafficante:1.0.2'
+
+    // Logs
+    compile "org.slf4j:slf4j-api:1.7.22"
+    compile "ch.qos.logback:logback-core:$logbackVersion"
+    compile "ch.qos.logback:logback-classic:$logbackVersion"
+    compile "org.codehaus.groovy:groovy-all:2.4.7"
+
+    // Metrics
+    compile "io.dropwizard.metrics:metrics-graphite:3.1.2"
+
+    // Tests
+    compile "junit:junit:4.12"
+
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.8'
+}

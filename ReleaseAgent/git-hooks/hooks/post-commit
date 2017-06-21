@@ -1,0 +1,11 @@
+#!/bin/sh
+echo "executing hook: post-commit"
+BASE_DIR=$(pwd)
+if [ -a .commit ]
+    then
+    rm .commit
+	git add "$BASE_DIR/src/main/resources/version"
+	git add "$BASE_DIR/ReleaseAgent/."
+    git commit --amend -C HEAD --no-verify
+fi
+exit

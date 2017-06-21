@@ -1,0 +1,8 @@
+#!/bin/sh
+echo "executing hook: commit-msg"
+BASE_DIR=$(pwd)
+MSG=$(<$1)
+cd "$BASE_DIR/ReleaseAgent"
+node commit.js "$MSG"
+cd $BASE_DIR
+touch .commit
