@@ -19,6 +19,7 @@ repositories {
 
 dependencies {
 
+    // Server
     compile 'io.github.avivcarmis:trafficante:1.0.2'
 
     // Logs
@@ -29,6 +30,9 @@ dependencies {
 
     // Metrics
     compile "io.dropwizard.metrics:metrics-graphite:3.1.2"
+
+    // Config
+    
 
     // Tests
     compile "junit:junit:4.12"

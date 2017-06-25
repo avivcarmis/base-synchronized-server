@@ -1,24 +1,18 @@
 import ch.qos.logback.core.*
 import ch.qos.logback.core.rolling.*
 import ch.qos.logback.classic.encoder.PatternLayoutEncoder
+import com.example.Server
 
-//def logDir
-//def logLevel
-//def onlySTDOut
-logDir = "C:\\Users\\Mamot\\Desktop\\1"
+logDir = ""
 logLevel = INFO
 onlySTDOut = false
-//try {
-//    logDir = MachineConfig.LOG_DIR.get()
-//    logLevel = MachineConfig.LOG_LEVEL.get()
-//    allowGreyLog = MachineConfig.ENV.get() == MachineConfig.Environment.PRODUCTION
-//    onlySTDOut = logDir == null || logDir.isEmpty()
-//} catch (ignored) {
-//    logDir = "C:\\Users\\Mamot\\Desktop\\1"
-//    logLevel = LogLevel.INFO
-//    onlySTDOut = true
-//    allowGreyLog = false
-//}
+try {
+    logDir = Server.LOCAL_CONFIG.loggingDir.get()
+    logLevel = Server.LOCAL_CONFIG.logLevel.get().level
+    onlySTDOut = logDir == null || logDir.isEmpty()
+} catch (ignored) {
+    onlySTDOut = true
+}
 
 if (!onlySTDOut) {
     def archiveBase = "${logDir}/archive"
@@ -29,7 +23,7 @@ if (!onlySTDOut) {
             maxHistory = 5
         }
         encoder(PatternLayoutEncoder) {
-            pattern = "[%level] - %date{yyyy-MM-dd HH:mm:ss} - %logger{0} - %thread - %X %n%message%n%xException"
+            pattern = "[%level] %date{yyyy-MM-dd HH:mm:ss.SSS} - %-50.50logger{49} : %thread %n%message%n%xException"
         }
     }
     appender("ERROR_LOG_FILE", RollingFileAppender) {
@@ -39,7 +33,7 @@ if (!onlySTDOut) {
             maxHistory = 5
         }
         encoder(PatternLayoutEncoder) {
-            pattern = "[%level] - %date{yyyy-MM-dd HH:mm:ss} - %logger{0} - %thread - %X %n%message%n%xException"
+            pattern = "[%level] %date{yyyy-MM-dd HH:mm:ss.SSS} - %-50.50logger{49} : %thread %n%message%n%xException"
         }
     }
     appender("SYSTEM_LOG_FILE", RollingFileAppender) {
@@ -49,7 +43,7 @@ if (!onlySTDOut) {
             maxHistory = 2
         }
         encoder(PatternLayoutEncoder) {
-            pattern = "[%level] - %date{yyyy-MM-dd HH:mm:ss} - %logger - %message%n%xException{5}"
+            pattern = "[%level] %date{yyyy-MM-dd HH:mm:ss.SSS} - %-50.50logger{49} : %message%n%xException{5}"
         }
     }
     appender("LIBS_LOG_FILE", RollingFileAppender) {
@@ -59,14 +53,14 @@ if (!onlySTDOut) {
             maxHistory = 2
         }
         encoder(PatternLayoutEncoder) {
-            pattern = "[%level] - %date{yyyy-MM-dd HH:mm:ss} - %logger{0} - %thread - %X %n%message%n%xException"
+            pattern = "[%level] %date{yyyy-MM-dd HH:mm:ss.SSS} - %-50.50logger{49} : %thread %n%message%n%xException"
         }
     }
 }
 
 appender("STDOUT", ConsoleAppender) {
     encoder(PatternLayoutEncoder) {
-        pattern = "[%level] - %date{yyyy-MM-dd HH:mm:ss} - %logger - %X - %message%n%xException{5}"
+        pattern = "[%level] %date{yyyy-MM-dd HH:mm:ss.SSS} - %-50.50logger{49} : %message%n%xException{5}"
     }
 }
 
