@@ -1,38 +1,39 @@
 package com.example.config;
 
 import ch.qos.logback.classic.Level;
-import io.github.avivcarmis.confeager.properties.ConfeagerPropertyBoolean;
-import io.github.avivcarmis.confeager.properties.ConfeagerPropertyEnumCI;
-import io.github.avivcarmis.confeager.properties.ConfeagerPropertyInteger;
-import io.github.avivcarmis.confeager.properties.ConfeagerPropertyString;
+import io.github.avivcarmis.confEager.ConfEager;
+import io.github.avivcarmis.confEager.ConfEagerProperty;
+import io.github.avivcarmis.confEager.properties.ConfEagerPropertyBoolean;
+import io.github.avivcarmis.confEager.properties.ConfEagerPropertyEnum;
+import io.github.avivcarmis.confEager.properties.ConfEagerPropertyInteger;
+import io.github.avivcarmis.confEager.properties.ConfEagerPropertyString;
 
 /**
  * Created by Mamot on 6/25/2017.
  */
-public class LocalConfig {
+public class LocalConfig extends ConfEager {
 
     // identity
 
-    public final ConfeagerPropertyEnumCI<Environment> environment = new ConfeagerPropertyEnumCI<>(
-            "environment", Environment.class, Environment.DEV);
+    public final ConfEagerPropertyEnum<Environment> environment = new ConfEagerPropertyEnum<>(Environment.class, false, defaultValue(Environment.DEV));
 
-    public final ConfeagerPropertyString machineId = new ConfeagerPropertyString("machineId", "local");
+    public final ConfEagerPropertyString machineId = new ConfEagerPropertyString(defaultValue("local"));
 
     // logs
 
-    public final ConfeagerPropertyString loggingDir = new ConfeagerPropertyString("loggingDir", "");
+    public final ConfEagerPropertyString loggingDir = new ConfEagerPropertyString(defaultValue(""));
 
-    public final ConfeagerPropertyEnumCI<LoggingLevel> logLevel = new ConfeagerPropertyEnumCI<>(
-            "logLevel", LoggingLevel.class, LoggingLevel.INFO);
+    public final ConfEagerPropertyEnum<LoggingLevel> logLevel = new ConfEagerPropertyEnum<>(LoggingLevel.class, false, defaultValue(LoggingLevel.INFO));
 
     // server
 
-    public final ConfeagerPropertyString host = new ConfeagerPropertyString("host", "0.0.0.0");
+    public final ConfEagerPropertyString host = new ConfEagerPropertyString(defaultValue("0.0.0.0"));
 
-    public final ConfeagerPropertyInteger port = new ConfeagerPropertyInteger("port", 8080);
+    public final ConfEagerPropertyInteger port = new ConfEagerPropertyInteger(defaultValue(8080));
 
-    public final ConfeagerPropertyBoolean enableSwagger = new ConfeagerPropertyBoolean(
-            "enableSwagger", true);
+    public final ConfEagerPropertyBoolean enableSwagger = new ConfEagerPropertyBoolean(defaultValue(true));
+
+    // enums
 
     public enum LoggingLevel {
 

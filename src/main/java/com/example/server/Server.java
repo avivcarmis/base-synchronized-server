@@ -3,7 +3,7 @@ package com.example.server;
 import com.example.config.ClusterConfig;
 import com.example.config.LocalConfig;
 import com.example.utils.EncodingUtils;
-import io.github.avivcarmis.confeager.sources.ConfeagerSourceSystemProperties;
+import io.github.avivcarmis.confEager.sources.ConfEagerSourceSystemProperties;
 import io.github.avivcarmis.trafficante.core.ServerNamingStrategy;
 import io.github.avivcarmis.trafficante.core.Trafficante;
 
@@ -15,9 +15,9 @@ import java.util.Date;
  */
 public class Server {
 
-    public static final LocalConfig LOCAL_CONFIG = ConfeagerSourceSystemProperties.INSTANCE.bind(LocalConfig.class);
+    public static final LocalConfig LOCAL_CONFIG = ConfEagerSourceSystemProperties.INSTANCE.bind(LocalConfig.class);
 
-    public static final ClusterConfig CLUSTER_CONFIG = ConfeagerSourceSystemProperties.INSTANCE.bind(ClusterConfig.class);
+    public static final ClusterConfig CLUSTER_CONFIG = ConfEagerSourceSystemProperties.INSTANCE.bind(ClusterConfig.class);
 
     public static final String APPLICATION_VERSION = loadApplicationVersion();
 

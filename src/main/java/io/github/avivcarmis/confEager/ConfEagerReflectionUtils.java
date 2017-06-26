@@ -1,4 +1,4 @@
-package io.github.avivcarmis.confeager;
+package io.github.avivcarmis.confEager;
 
 import io.github.avivcarmis.trafficante.core.BasicEndpoint;
 import org.apache.commons.logging.Log;
@@ -7,7 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import java.lang.reflect.*;
 import java.util.*;
 
-class ConfeagerReflectionUtils {
+class ConfEagerReflectionUtils {
 
     // Constants
 
@@ -15,13 +15,13 @@ class ConfeagerReflectionUtils {
 
     // Static
 
-    static List<ConfeagerProperty> findProperties(Object confeagerObject, ConfeagerFieldFilter filter) {
-        List<ConfeagerProperty> result = new LinkedList<>();
-        Class<?> currentClass = confeagerObject.getClass();
+    static List<ConfEagerProperty> findProperties(ConfEager confEagerObject, ConfEagerFieldFilter filter) {
+        List<ConfEagerProperty> result = new LinkedList<>();
+        Class<?> currentClass = confEagerObject.getClass();
         while (currentClass != null && !currentClass.equals(Object.class)) {
             Field[] currentClassFields = currentClass.getDeclaredFields();
             for (Field field : currentClassFields) {
-                ConfeagerProperty property = validatePropertyField(filter, confeagerObject, field);
+                ConfEagerProperty property = validatePropertyField(filter, confEagerObject, field);
                 if (property != null) {
                     result.add(property);
                 }
@@ -31,8 +31,8 @@ class ConfeagerReflectionUtils {
         return result;
     }
 
-    private static ConfeagerProperty validatePropertyField(ConfeagerFieldFilter filter, Object object, Field field) {
-        if (!filter.test(field) || !ConfeagerProperty.class.isAssignableFrom(field.getType())) {
+    private static ConfEagerProperty validatePropertyField(ConfEagerFieldFilter filter, ConfEager object, Field field) {
+        if (!filter.test(field) || !ConfEagerProperty.class.isAssignableFrom(field.getType())) {
             return null;
         }
         field.setAccessible(true);
@@ -40,15 +40,18 @@ class ConfeagerReflectionUtils {
         try {
             value = field.get(object);
         } catch (IllegalAccessException e) {
-            LOG.error("could not access property " + field.getName() + " on confeager class " +
+            LOG.error("could not access property " + field.getName() + " on confEager class " +
                     object.getClass().getSimpleName(), e);
             return null;
         }
         if (value == null) {
-            LOG.error("property " + field.getName() + " on confeager class " + object.getClass().getSimpleName() +
+            LOG.error("property " + field.getName() + " on confEager class " + object.getClass().getSimpleName() +
                     " must not be null to be populated");
+            return null;
         }
-        return (ConfeagerProperty) value;
+        ConfEagerProperty result = (ConfEagerProperty) value;
+        result.setFieldName(field.getName());
+        return result;
     }
 
 }

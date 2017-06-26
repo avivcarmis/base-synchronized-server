@@ -1,23 +1,23 @@
-package io.github.avivcarmis.confeager.sources;
+package io.github.avivcarmis.confEager.sources;
 
-import io.github.avivcarmis.confeager.ConfeagerSource;
+import io.github.avivcarmis.confEager.ConfEagerSource;
 
 import java.util.List;
 
 /**
  * Created by Mamot on 6/25/2017.
  */
-public class ConfeagerSourceCombinator extends ConfeagerSource {
+public class ConfEagerSourceCombinator extends ConfEagerSource {
 
-    private final List<ConfeagerSource> _sources;
+    private final List<ConfEagerSource> _sources;
 
-    public ConfeagerSourceCombinator(List<ConfeagerSource> sources) {
+    public ConfEagerSourceCombinator(List<ConfEagerSource> sources) {
         _sources = sources;
     }
 
     @Override
     public String getValueOrNull(String propertyName) {
-        for (ConfeagerSource source : _sources) {
+        for (ConfEagerSource source : _sources) {
             String value = source.getValueOrNull(propertyName);
             if (value != null) {
                 return value;

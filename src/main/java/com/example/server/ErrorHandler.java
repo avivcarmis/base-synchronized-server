@@ -7,10 +7,6 @@ import io.github.avivcarmis.trafficante.core.BasicErrorHandler;
  */
 public class ErrorHandler extends BasicErrorHandler<APIResponse<?>> {
 
-    public ErrorHandler() {
-        int i = 1;
-    }
-
     @Override
     protected APIResponse<?> wrapFailure(Throwable t) {
         return APIResponse.failure(t);
