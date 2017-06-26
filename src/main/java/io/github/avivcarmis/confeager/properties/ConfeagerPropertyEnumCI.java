@@ -5,13 +5,13 @@ import io.github.avivcarmis.confeager.properties.utils.ConfeagerPropertyEnumOf;
 /**
  * Created by Mamot on 6/25/2017.
  */
-public class ConfeagerPropertyCaseInsensitiveEnum<T extends Enum<T>> extends ConfeagerPropertyEnumOf<T> {
+public class ConfeagerPropertyEnumCI<T extends Enum<T>> extends ConfeagerPropertyEnumOf<T> {
 
-    public ConfeagerPropertyCaseInsensitiveEnum(String key, Class<T> tClass) {
+    public ConfeagerPropertyEnumCI(String key, Class<T> tClass) {
         super(key, tClass);
     }
 
-    public ConfeagerPropertyCaseInsensitiveEnum(String key, Class<T> tClass, T defaultValue) {
+    public ConfeagerPropertyEnumCI(String key, Class<T> tClass, T defaultValue) {
         super(key, tClass, defaultValue);
     }
 

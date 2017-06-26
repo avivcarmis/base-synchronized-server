@@ -1,9 +1,8 @@
-package com.example;
+package com.example.config;
 
 import ch.qos.logback.classic.Level;
-import io.github.avivcarmis.confeager.ConfeagerProperty;
 import io.github.avivcarmis.confeager.properties.ConfeagerPropertyBoolean;
-import io.github.avivcarmis.confeager.properties.ConfeagerPropertyCaseInsensitiveEnum;
+import io.github.avivcarmis.confeager.properties.ConfeagerPropertyEnumCI;
 import io.github.avivcarmis.confeager.properties.ConfeagerPropertyInteger;
 import io.github.avivcarmis.confeager.properties.ConfeagerPropertyString;
 
@@ -12,16 +11,28 @@ import io.github.avivcarmis.confeager.properties.ConfeagerPropertyString;
  */
 public class LocalConfig {
 
+    // identity
+
+    public final ConfeagerPropertyEnumCI<Environment> environment = new ConfeagerPropertyEnumCI<>(
+            "environment", Environment.class, Environment.DEV);
+
+    public final ConfeagerPropertyString machineId = new ConfeagerPropertyString("machineId", "local");
+
+    // logs
+
     public final ConfeagerPropertyString loggingDir = new ConfeagerPropertyString("loggingDir", "");
 
-    public final ConfeagerPropertyCaseInsensitiveEnum<LoggingLevel> logLevel =
-            new ConfeagerPropertyCaseInsensitiveEnum<>("logLevel", LoggingLevel.class, LoggingLevel.INFO);
+    public final ConfeagerPropertyEnumCI<LoggingLevel> logLevel = new ConfeagerPropertyEnumCI<>(
+            "logLevel", LoggingLevel.class, LoggingLevel.INFO);
+
+    // server
 
     public final ConfeagerPropertyString host = new ConfeagerPropertyString("host", "0.0.0.0");
 
     public final ConfeagerPropertyInteger port = new ConfeagerPropertyInteger("port", 8080);
 
-    public final ConfeagerPropertyBoolean enableSwagger = new ConfeagerPropertyBoolean("enableSwagger", true);
+    public final ConfeagerPropertyBoolean enableSwagger = new ConfeagerPropertyBoolean(
+            "enableSwagger", true);
 
     public enum LoggingLevel {
 
@@ -39,6 +50,10 @@ public class LocalConfig {
             this.level = level;
         }
 
+    }
+
+    public enum Environment {
+        DEV, STAGING, PRODUCTION
     }
 
 }
