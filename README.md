@@ -3,6 +3,7 @@ A boilerplate for backend applications integrating Trafficante with logging, con
 
 ## To Do When Cloning
 - Download the project sources.
+- Copy `ReleaseAgent/git-hooks/hooks` directory to `.git` directory to enable ReleaseAgent support. NodeJS must be locally installed for that. More info at [https://github.com/avivcarmis/ReleaseAgent](https://github.com/avivcarmis/ReleaseAgent "https://github.com/avivcarmis/ReleaseAgent")
 - Open in your IDE.
 - Rename `com.example` package name to whatever package you like to use.
 - Edit `gradle.properties` file, set maven project name and group, and set the main class.
