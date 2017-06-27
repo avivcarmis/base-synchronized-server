@@ -1,0 +1,12 @@
+@echo off
+
+set PROPERTIES=
+set PROPERTIES=%PROPERTIES% -Denvironment=PRODUCTION
+set PROPERTIES=%PROPERTIES% -DmachineId=PRODUCTION-01
+set PROPERTIES=%PROPERTIES% -DloggingDir=/var/log/server/
+set PROPERTIES=%PROPERTIES% -DlogLevel=INFO
+set PROPERTIES=%PROPERTIES% -Dhost=0.0.0.0
+set PROPERTIES=%PROPERTIES% -Dport=8080
+set PROPERTIES=%PROPERTIES% -DenableSwagger=false
+
+java %PROPERTIES% -jar server.jar

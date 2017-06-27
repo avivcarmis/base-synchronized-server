@@ -7,7 +7,7 @@ import java.util.Map;
  */
 public class StubMetricsUnit implements MetricsUnit {
 
-    static final com.example.metrics.StubMetricsUnit INSTANCE = new com.example.metrics.StubMetricsUnit();
+    static final StubMetricsUnit INSTANCE = new StubMetricsUnit();
 
     private StubMetricsUnit() {}
 

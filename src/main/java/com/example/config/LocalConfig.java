@@ -2,7 +2,6 @@ package com.example.config;
 
 import ch.qos.logback.classic.Level;
 import io.github.avivcarmis.confEager.ConfEager;
-import io.github.avivcarmis.confEager.ConfEagerProperty;
 import io.github.avivcarmis.confEager.properties.ConfEagerPropertyBoolean;
 import io.github.avivcarmis.confEager.properties.ConfEagerPropertyEnum;
 import io.github.avivcarmis.confEager.properties.ConfEagerPropertyInteger;

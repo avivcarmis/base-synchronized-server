@@ -1,9 +1,5 @@
 package com.example.metrics;
 
-import com.codahale.metrics.*;
-import com.google.common.collect.ImmutableMap;
-
-import java.util.HashMap;
 import java.util.Map;
 
 /**
