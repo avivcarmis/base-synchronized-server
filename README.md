@@ -13,7 +13,6 @@ A boilerplate for backend applications integrating Trafficante with logging, con
 - Remove `ExampleEndpoint` class and start adding new endpoints. More info at [https://github.com/avivcarmis/trafficante](https://github.com/avivcarmis/trafficante "https://github.com/avivcarmis/trafficante")
 - Remove `ExampleTestClass` class and start adding tests.
 
-
 ## How To Compile And Run
 - Compile a fat jar (standalone jar containing all dependencies) by running `gradle bootRepackage`. (To use gradle wrapper, run `gradlew bootRepackage` on unix or `gradlew.bat bootRepackage` on windows). This will generate `build/libs/${project-name}-${project-version}.jar`. This is your executable.
 - Copy `start.sh` for linux or `start.bat` for windows, and your executable jar. Change the executable jar name to `server.jar`, and edit the start script variables to match your target machine and local configuration.
