@@ -1,1 +1,1 @@
-module.exports = {"isNewRelease":false};
+module.exports = {"isNewRelease":true};
